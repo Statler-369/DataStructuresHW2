@@ -1,4 +1,4 @@
-
+@using DataStructuresHW2.Models
 @{
     ViewBag.Title = "Index";
 }
@@ -15,4 +15,7 @@
         <li>Search Dictionary</li>
         <li><a href="@Url.Action("Index", "Home")" class="w3-bar-item w3-button">Return to Main Menu</a></li>
     </ol>
+</p>
+<p>
+    @myDict.userDictionary["Key 1"]
 </p>
