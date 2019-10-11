@@ -1,4 +1,3 @@
-@using DataStructuresHW2.Models
 @{
     ViewBag.Title = "Index";
 }
@@ -7,8 +6,8 @@
 
 <p>
     <ol>
-        <li>Add one item to Dictionary</li>
-        <li>Add Huge List of Items to Dictionary</li>
+        <li><a href="@Url.Action("AddOne", "Dictionary")" class="w3-bar-item w3-button">Add one item to Dictionary</a></li>
+        <li><a href="@Url.Action("AddHugeList", "Dictionary")" class="w3-bar-item w3-button">Add Huge List of Items to Dictionary</a></li>
         <li>Display Dictionary</li>
         <li>Delete from Dictionary</li>
         <li>Clear Dictionary</li>
@@ -16,6 +15,8 @@
         <li><a href="@Url.Action("Index", "Home")" class="w3-bar-item w3-button">Return to Main Menu</a></li>
     </ol>
 </p>
+<!--
 <p>
-    @myDict.userDictionary["Key 1"]
+    //ViewBag.MyDictionary.Count
 </p>
+-->
