@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "Display";
+}
+
+<h2>Display</h2>
+
+@{ 
+    string output = "";
+    foreach(KeyValuePair<string, int> newEntry in ViewBag.MyDictionary) {
+        output += newEntry.Value + ": " + newEntry.Key + "<br>";
+    }
+}
+
+@Html.Raw((string) output)
+
+<p>
+    <a href="@Url.Action("Index", "Dictionary")" class="w3-bar-item w3-button">Back to Dictionary Page</a>
+</p>

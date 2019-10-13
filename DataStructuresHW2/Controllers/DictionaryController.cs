@@ -20,9 +20,18 @@ namespace DataStructuresHW2.Controllers
 
         public ActionResult AddOne()
         {
-            //Add stuff to the stack. Not quite done yet. Watch the video to finish.
-            myDict.Add("New entry " + (myDict.Count + 1), (myDict.Count + 1));
+            int errorCheckVar = 0;
 
+            //If a record was deleted from the middle of the dictionary, we need to make sure a different key is added.            
+            while (myDict.ContainsKey("New entry " + (myDict.Count + 1 + errorCheckVar)))
+            {
+                errorCheckVar++;
+            } 
+            
+            //Add one new entry to the dictionary
+            myDict.Add("New entry " + (myDict.Count + 1 + errorCheckVar), (myDict.Count + 1 + errorCheckVar));
+
+            //Pass the dictionary to the viewbag
             ViewBag.MyDictionary = myDict;
 
             return View("Index");
@@ -30,14 +39,67 @@ namespace DataStructuresHW2.Controllers
 
         public ActionResult AddHugeList()
         {
-            //myDict.Clear();
+            //Clear the current dictionary
+            myDict.Clear();
 
-            for(int iCount = 0; iCount <= 2000; iCount ++)
+            //Add 2000 entries to the dictionary
+            for(int iCount = 0; iCount < 2000; iCount ++)
             {
                 myDict.Add("New entry " + (myDict.Count + 1), (myDict.Count + 1));
             }
 
-            ViewBag.Dictionary = myDict;
+            //Pass the dictionary to the viewbag
+            ViewBag.MyDictionary = myDict;
+
+            return View("Index");
+        }
+
+        public ActionResult Display()
+        {
+
+            //Pass the dictionary to the viewbag
+            ViewBag.MyDictionary = myDict;
+
+            return View();
+        }
+
+        public ActionResult SelectDelete()
+        {
+
+            ViewBag.MyDictionary = myDict;
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult DeleteItem(string DeleteKey)
+        {            
+            //Make sure the key is in the dictionary
+            if (!myDict.ContainsKey(DeleteKey))
+            {
+                //If the key is not in the dictionary, have the user try again.
+                ViewBag.DeleteKey = DeleteKey;
+                ViewBag.KeyFound = false;
+                return View("SelectDelete");
+            }
+
+            //Otherwise, continue forward.
+            //Remove the key
+            myDict.Remove(DeleteKey);
+
+            //set myDict to the new dictionary
+            ViewBag.MyDictionary = myDict;
+
+            return View("Index");
+        }
+
+        public ActionResult ClearDict()
+        {
+            //clear all items in the dictionary
+            myDict.Clear();
+
+            //Pass the dictionary to the viewbag
+            ViewBag.MyDictionary = myDict;
 
             return View("Index");
         }

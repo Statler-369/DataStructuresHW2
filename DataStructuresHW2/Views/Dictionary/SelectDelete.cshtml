@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "SelectDelete";
+}
+
+<h2>SelectDelete</h2>
+
+@{
+    if (ViewBag.KeyFound != null)
+    {
+        if (!ViewBag.KeyFound)
+        {
+        <text>
+            The key @ViewBag.DeleteKey was not found in the dictionary. Please enter a valid key, formatted like so: New entry (#)
+        </text>
+        }
+    }
+}
+
+<form method="post" action="@Url.Action("DeleteItem", "Dictionary")">
+    <fieldset>
+        <legend>Enter the key for the entry you would like to delete:</legend>
+        <div>
+            <label for="DeleteKey">Key to Delete:</label>
+            <input type="text" name="DeleteKey" value="" />
+        </div>
+        <div>
+            <label>&nbsp;</label>
+            <input type="submit" value="Delete" class="submit" />
+        </div>
+    </fieldset>
+</form>
