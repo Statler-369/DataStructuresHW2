@@ -103,5 +103,33 @@ namespace DataStructuresHW2.Controllers
 
             return View("Index");
         }
+
+        //I'm not sure why this isn't working.
+        public ActionResult(string SearchKey)
+        {
+            //Make sure the key is in the dictionary
+            if (!myDict.ContainsKey(SearchKey))
+            {
+                //If the key is not in the dictionary, have the user try again.
+                ViewBag.SearchKey = SearchKey;
+                ViewBag.KeyFound = false;
+                return View("SearchDict");
+            }
+
+            ViewBag.KeyFound = true;
+
+            return View("SearchDict");
+        }
+
+        public ActionResult SearchDict()
+        {
+
+            //Pass the dictionary to the viewbag
+            ViewBag.MyDictionary = myDict;
+
+            return View();
+        }
+
+        
     }
 }

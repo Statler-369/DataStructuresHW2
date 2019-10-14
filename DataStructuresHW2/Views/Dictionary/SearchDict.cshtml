@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "SearchDict";
+}
+
+<h2>SearchDict</h2>
+
+
+@{
+    if (ViewBag.SearchKeyFound != null)
+    {
+        if (!ViewBag.SearchKeyFound)
+        {
+            <text>
+                The key @ViewBag.SearchKey was not found in the dictionary. Please enter a valid key, formatted like so: New entry (#)
+            </text>
+        }
+    }
+}
+
+<form method="post" action="@Url.Action("", "Dictionary")">
+    <fieldset>
+        <legend>Enter the key for the entry you would like to search:</legend>
+        <div>
+            <label for="SearchKey">Key to Search:</label>
+            <input type="text" name="SearchKey" value="" />
+        </div>
+        <div>
+            <label>&nbsp;</label>
+            <input type="submit" value="Search" class="submit" />
+        </div>
+    </fieldset>
+</form>
