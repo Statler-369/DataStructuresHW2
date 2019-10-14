@@ -105,18 +105,34 @@ namespace DataStructuresHW2.Controllers
         }
 
         //I'm not sure why this isn't working.
-        public ActionResult(string SearchKey)
+        public ActionResult SearchKey (string SearchKey)
         {
+            ViewBag.SearchKey = SearchKey;
+
+            System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
+
+            sw.Start();
+
+            //loop to do all the work
+
             //Make sure the key is in the dictionary
             if (!myDict.ContainsKey(SearchKey))
             {
-                //If the key is not in the dictionary, have the user try again.
-                ViewBag.SearchKey = SearchKey;
-                ViewBag.KeyFound = false;
+                //If the key is not in the dictionary, have the user try again.                
+                ViewBag.SearchKeyFound = false;
                 return View("SearchDict");
             }
 
-            ViewBag.KeyFound = true;
+            ViewBag.SearchKeyFound = true;
+
+            sw.Stop();
+
+            TimeSpan ts = sw.Elapsed;
+
+            ViewBag.StopWatch = ts;
+
+            //Pass the dictionary to the viewbag
+            ViewBag.MyDictionary = myDict;
 
             return View("SearchDict");
         }

@@ -7,18 +7,26 @@
 
 
 @{
-    if (ViewBag.SearchKeyFound != null)
-    {
+    if (ViewBag.SearchKey != null)
+    {        
         if (!ViewBag.SearchKeyFound)
         {
             <text>
-                The key @ViewBag.SearchKey was not found in the dictionary. Please enter a valid key, formatted like so: New entry (#)
+                The key @ViewBag.SearchKey was not found in the dictionary. <br />
+                Please enter a valid key, formatted like so: New entry (#)
+            </text>
+        }
+        else
+        {
+            <text>
+                The key @ViewBag.SearchKey returns the value: @ViewBag.MyDictionary[ViewBag.SearchKey] <br />
+                Searching the dictionary for this value took @ViewBag.StopWatch seconds.
             </text>
         }
     }
 }
 
-<form method="post" action="@Url.Action("", "Dictionary")">
+<form method="post" action="@Url.Action("SearchKey", "Dictionary")">
     <fieldset>
         <legend>Enter the key for the entry you would like to search:</legend>
         <div>
@@ -31,3 +39,10 @@
         </div>
     </fieldset>
 </form>
+
+<p>
+    <a href="@Url.Action("Index", "Dictionary")"> Return to Dictionary Menu</a>
+</p>
+<p>
+    <a href="@Url.Action("Index", "Home")"> Return to Main Menu</a>
+</p>
