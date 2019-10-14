@@ -132,6 +132,8 @@
     <Content Include="Views\Dictionary\Display.cshtml" />
     <Content Include="Views\Dictionary\SelectDelete.cshtml" />
     <Content Include="Views\Dictionary\SearchDict.cshtml" />
+    <Content Include="Views\Queue\Display.cshtml" />
+    <Content Include="Views\Stack\Display.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

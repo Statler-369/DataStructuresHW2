@@ -57,7 +57,7 @@ namespace DataStructuresHW2.Controllers
         public ActionResult Display()
         {
 
-            //Pass the dictionary to the viewbag
+            //Pass the dictionary to the viewbag. The view will do the rest.
             ViewBag.MyDictionary = myDict;
 
             return View();
@@ -65,7 +65,7 @@ namespace DataStructuresHW2.Controllers
 
         public ActionResult SelectDelete()
         {
-
+            //Navigate to the SelectDelete View. Code in the view will do the rest
             ViewBag.MyDictionary = myDict;
 
             return View();
@@ -74,6 +74,8 @@ namespace DataStructuresHW2.Controllers
         [HttpPost]
         public ActionResult DeleteItem(string DeleteKey)
         {            
+            //A key to delete has been passed from the view.
+
             //Make sure the key is in the dictionary
             if (!myDict.ContainsKey(DeleteKey))
             {
@@ -84,7 +86,7 @@ namespace DataStructuresHW2.Controllers
             }
 
             //Otherwise, continue forward.
-            //Remove the key
+            //Remove the key. Delete the key/value pair.
             myDict.Remove(DeleteKey);
 
             //set myDict to the new dictionary
@@ -104,16 +106,22 @@ namespace DataStructuresHW2.Controllers
             return View("Index");
         }
 
-        //I'm not sure why this isn't working.
-        public ActionResult SearchKey (string SearchKey)
+        public ActionResult SearchDict()
         {
+
+            //Pass the dictionary to the viewbag. Navigate to the search view.
+            ViewBag.MyDictionary = myDict;
+
+            return View();
+        }
+
+        public ActionResult SearchKey(string SearchKey)
+        {
+            //Set the viewbag to the value passed from the view.
             ViewBag.SearchKey = SearchKey;
 
+            //Initialize the stopwatch
             System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
-
-            sw.Start();
-
-            //loop to do all the work
 
             //Make sure the key is in the dictionary
             if (!myDict.ContainsKey(SearchKey))
@@ -123,12 +131,20 @@ namespace DataStructuresHW2.Controllers
                 return View("SearchDict");
             }
 
+            //not in the key was found in the dictionary.
             ViewBag.SearchKeyFound = true;
 
-            sw.Stop();
+            //Figure out how long it takes for the dictionary to find a value.
+            sw.Start();
+            if (myDict.ContainsKey(SearchKey))
+            {
+                sw.Stop();
+            }
 
+            //Set a variable to the elapsed time.
             TimeSpan ts = sw.Elapsed;
 
+            //Pass the elapsed time to the view.
             ViewBag.StopWatch = ts;
 
             //Pass the dictionary to the viewbag
@@ -136,16 +152,5 @@ namespace DataStructuresHW2.Controllers
 
             return View("SearchDict");
         }
-
-        public ActionResult SearchDict()
-        {
-
-            //Pass the dictionary to the viewbag
-            ViewBag.MyDictionary = myDict;
-
-            return View();
-        }
-
-        
     }
 }

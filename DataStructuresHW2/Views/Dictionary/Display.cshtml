@@ -4,7 +4,7 @@
 }
 
 <h2>Display</h2>
-
+<!--For each entry in the dictionary, display the keys and the values-->
 @{ 
     string output = "";
     foreach(KeyValuePair<string, int> newEntry in ViewBag.MyDictionary) {
@@ -14,6 +14,6 @@
 
 @Html.Raw((string) output)
 
-<p>
-    <a href="@Url.Action("Index", "Dictionary")" class="w3-bar-item w3-button">Back to Dictionary Page</a>
-</p>
+<div>
+    <a href="@Url.Action("Index", "Dictionary")" class="w3-bar-item w3-button"> Return to Dictionary Menu</a>
+</div>

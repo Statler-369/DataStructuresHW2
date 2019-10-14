@@ -1,18 +1,19 @@
-
 @{
     ViewBag.Title = "Index";
 }
-
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <h2>Index</h2>
-
 <p>
-    <ol>
-        <li>Add one item to Queue</li>
-        <li>Add Huge List of Items to Queue</li>
-        <li>Display Queue</li>
-        <li>Delete from Queue</li>
-        <li>Clear Queue</li>
-        <li>Search Queue</li>
-        <li><a href="@Url.Action("Index", "Home")" class="w3-bar-item w3-button">Return to Main Menu</a></li>
-    </ol>
+    @ViewBag.deleteOutput
+    @ViewBag.searchResult
+    @ViewBag.time
 </p>
+<div class="w3-sidebar w3-light-grey w3-bar-block" style="width:25%">
+    <a href="@Url.Action("AddOne", "Queue")" class="w3-bar-item w3-button">Add one item to Queue</a>
+    <a href="@Url.Action("AddHugeList", "Queue")" class="w3-bar-item w3-button">Add Huge List of Items to Queue</a>
+    <a href="@Url.Action("Display", "Queue")" class="w3-bar-item w3-button">Display Queue</a>
+    <a href="@Url.Action("Delete", "Queue")" class="w3-bar-item w3-button">Delete from Queue</a>
+    <a href="@Url.Action("ClearQueue", "Queue")" class="w3-bar-item w3-button">Clear Queue</a>
+    <a href="@Url.Action("Search", "Queue")" class="w3-bar-item w3-button">Search Queue</a>
+    <a href="@Url.Action("Index", "Home")" class="w3-bar-item w3-button">Return to Main Menu</a>
+</div>

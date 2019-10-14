@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Display";
+}
+<h2>Display</h2>
+@{
+    string output = "";
+    foreach (string newEntry in ViewBag.myQueue)
+    {
+        output += newEntry + "<br>";
+    }
+}
+@Html.Raw((string)output)
+<p>
+    <a href="@Url.Action("Index", "Queue")" class="w3-bar-item w3-button">Back to Queue Page</a>
+</p>
