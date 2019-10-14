@@ -1,9 +1,15 @@
 ﻿
 @{
     ViewBag.Title = "Display";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 <h2>Display</h2>
+<div>
+    <a href="@Url.Action("Index", "Dictionary")" class="w3-bar-item w3-button"> Return to Dictionary Menu</a>
+</div>
 <!--For each entry in the dictionary, display the keys and the values-->
 @{ 
     string output = "";
@@ -14,6 +20,3 @@
 
 @Html.Raw((string) output)
 
-<div>
-    <a href="@Url.Action("Index", "Dictionary")" class="w3-bar-item w3-button"> Return to Dictionary Menu</a>
-</div>

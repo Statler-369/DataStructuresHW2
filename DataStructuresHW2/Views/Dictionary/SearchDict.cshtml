@@ -1,14 +1,17 @@
 ﻿
 @{
     ViewBag.Title = "SearchDict";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 <h2>SearchDict</h2>
 
 
 @{
     if (ViewBag.SearchKey != null)
-    {        
+    {
         if (!ViewBag.SearchKeyFound)
         {
             <text>
