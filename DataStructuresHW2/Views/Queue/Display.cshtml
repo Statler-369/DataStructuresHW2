@@ -8,6 +8,8 @@
 <p>
     <a href="@Url.Action("Index", "Queue")" class="w3-bar-item w3-button">Back to Queue Page</a>
 </p>
+<!--This will run a foreach loop to output each item in myqueue viewbag and then display it.
+    link above will go back to index view-->
 @{
     string output = "";
     foreach (string newEntry in ViewBag.myQueue)
