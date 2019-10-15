@@ -9,6 +9,8 @@
     @ViewBag.searchResult
     @ViewBag.time
 </p>
+<!--We decided to use a sidebar nav for this page. Output results will be displayed above. 
+-->
 <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:25%">
     <a href="@Url.Action("AddOne", "Queue")" class="w3-bar-item w3-button">Add one item to Queue</a>
     <a href="@Url.Action("AddHugeList", "Queue")" class="w3-bar-item w3-button">Add Huge List of Items to Queue</a>
