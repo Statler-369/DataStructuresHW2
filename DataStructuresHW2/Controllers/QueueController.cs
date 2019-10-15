@@ -1,9 +1,10 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+
 namespace DataStructures.Controllers
 {
     public class QueueController : Controller
@@ -15,52 +16,73 @@ namespace DataStructures.Controllers
             ViewBag.myQueue = myQueue;
             return View();
         }
+
         public ActionResult AddOne()
         {
+          
             //Add one new entry to the queue
             myQueue.Enqueue("New entry " + (myQueue.Count + 1));
+
             //Pass the queue to the viewbag
             ViewBag.myQueue = myQueue;
+
             return View("Index");
         }
+
         public ActionResult AddHugeList()
         {
-            //Clear the current dictionary
+            //Clear the current queue
             myQueue.Clear();
-            //Add 2000 entries to the dictionary
+
+            //Add 2000 entries to the queue
             for (int iCount = 0; iCount < 2000; iCount++)
             {
                 myQueue.Enqueue("New entry " + (myQueue.Count + 1));
             }
-            //Pass the dictionary to the viewbag
+
+            //Pass the queue to the viewbag
             ViewBag.myQueue = myQueue;
+
             return View("Index");
         }
+
         public ActionResult Display()
         {
-            //Pass the dictionary to the viewbag
+
+            //Pass the queue to the viewbag
             ViewBag.myQueue = myQueue;
+
+            //call display view
             return View("Display");
         }
+
         public ActionResult Delete()
         {
+            //dequeue item if there are entries
             if (myQueue.Count > 0)
-            {
-                myQueue.Dequeue();
+                {
+                myQueue.Dequeue();                            
             }
+            //error message
             else
             {
                 ViewBag.deleteOutput = "There are no items to delete";
             }
+
             return View("Index");
         }
 
         public ActionResult Search()
         {
+            //initialize stopwatch and search variable
             System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
             string searchValue = "New entry 5";
             bool bFound = false;
+
+            //start the stop watch
             sw.Start();
+
+            //for loop to run through each item in queue and check if it's found
             foreach (string entryValue in myQueue)
             {
                 if (entryValue == searchValue)
@@ -69,7 +91,9 @@ namespace DataStructures.Controllers
                     bFound = true;
                 }
             }
-            if (bFound == true)
+            
+            //determine output result message, stop watch
+            if(bFound ==true)
             {
                 ViewBag.searchResult = "Your search for " + searchValue + " was found!";
             }
@@ -78,18 +102,24 @@ namespace DataStructures.Controllers
                 sw.Stop();
                 ViewBag.searchResult = "Your search for " + searchValue + " was not found!";
             }
+            
+            //enter time output message
             TimeSpan ts = sw.Elapsed;
-            ViewBag.time = "It took " + ts + " seconds to search for your entry";
-            //loop to do all the work
             ViewBag.StopWatch = ts;
+            ViewBag.time = "It took " + ts + " seconds to search for your entry";
+            
             return View("Index");
         }
+
+
         public ActionResult ClearQueue()
         {
             //clear all items in the dictionary
             myQueue.Clear();
+
             //Pass the dictionary to the viewbag
             ViewBag.myQueue = myQueue;
+
             return View("Index");
         }
     }
